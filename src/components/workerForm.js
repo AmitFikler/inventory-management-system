@@ -1,12 +1,25 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const WorkerForm = () => {
-  const [fullname, setFullName] = useState('');
+  const dispatch = useDispatch();
+  const [fullName, setFullName] = useState('');
   const [workplace, setWorkplace] = useState('');
   const [date, setDate] = useState('');
 
+  const navigate = useNavigate();
+
   const submitForm = () => {
-    console.log({ fullname, workplace, date });
+    console.log({ fullName, workplace, date });
+    if (!fullName || !workplace || !date) {
+      return;
+    }
+    dispatch({
+      type: 'ENTRY_WORKER',
+      payload: { fullName, workplace, date },
+    });
+    navigate('/inventory');
   };
 
   return (
