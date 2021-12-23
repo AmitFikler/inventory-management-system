@@ -7,6 +7,10 @@ export const inventoryReducer = (state = initialState, action) => {
     case 'ADD_ITEM':
       const item = action.payload;
       return [...state, item];
+
+    case 'REMOVE_ITEM':
+      const arrayAfterFilter = state.filter((item, i) => i !== action.payload);
+      return [...arrayAfterFilter];
     default:
       return [...state];
   }

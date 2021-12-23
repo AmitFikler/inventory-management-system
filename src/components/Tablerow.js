@@ -1,7 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const TableRow = ({ item, i }) => {
   const [currentQuantity, setCurrentQuantity] = useState(0);
+  const dispatch = useDispatch();
+
+  const removeItem = (index) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: index });
+  };
   return (
     <tr>
       <td>{i}</td>
@@ -20,6 +26,19 @@ const TableRow = ({ item, i }) => {
           ? 0
           : item.fullQuantity - currentQuantity}
       </td>
+      {item.owner ? (
+        <td>
+          <button
+            onClick={() => {
+              removeItem(i);
+            }}
+          >
+            X
+          </button>
+        </td>
+      ) : (
+        <></>
+      )}
     </tr>
   );
 };
