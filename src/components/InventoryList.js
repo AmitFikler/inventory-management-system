@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
+import TableRow from './Tablerow';
 
 const InventoryList = () => {
   const worker = useSelector((state) => state.workerReducer);
   const fullEquipmentList = useSelector((state) => state.inventoryReducer);
-  console.log(fullEquipmentList);
   return (
     <div>
       <h1>{worker.fullName}</h1>
@@ -17,17 +17,7 @@ const InventoryList = () => {
         </tr>
         <tbody>
           {fullEquipmentList.map((item, i) => {
-            return [
-              <tr key={i}>
-                <td>{i}</td>
-                <td>{item.name}</td>
-                <td>{item.fullQuantity}</td>
-                <td>
-                  <input type="number" />
-                </td>
-                <td>?</td>
-              </tr>,
-            ];
+            return [<TableRow item={item} i={i} key={i} />];
           })}
         </tbody>
       </table>

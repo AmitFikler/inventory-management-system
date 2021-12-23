@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WorkerForm from './components/workerForm';
-import InventoryList from './components/InventoryList';
+import InventoryPage from './components/InventoryPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WorkerForm />} />
-          <Route path="/inventory" element={<InventoryList />} />
+          <Route path="/inventory" element={<InventoryPage />} />
         </Routes>
       </BrowserRouter>
     </div>
