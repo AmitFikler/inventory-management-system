@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 const SubmitPage = () => {
   const worker = useSelector((state) => state.workerReducer);
   const fullEquipmentList = useSelector((state) => state.inventoryReducer);
-  console.log(worker);
 
   const missingEquipment = fullEquipmentList.filter((item) => item.missing > 0);
   return (

@@ -2,16 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import AddItem from './AddItem';
 import InventoryList from './InventoryList';
 import SignatureCanvas from 'react-signature-canvas';
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 const InventoryPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const sigPad = useRef(null);
   const [trimmedDataURL, setTrimmedDataURL] = useState(null);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'ADD_SIGNATURE', payload: trimmedDataURL });
@@ -21,16 +22,18 @@ const InventoryPage = () => {
     setTrimmedDataURL(sigPad.current.getTrimmedCanvas().toDataURL('image/png'));
     setTimeout(() => {
       navigate('/submit');
-    }, 500);
+    }, 150);
   };
   return (
     <>
       <InventoryList />
       <AddItem />
+      <label htmlFor="Signature">Signature: </label>
       <SignatureCanvas
+        name="signature"
         ref={sigPad}
         penColor="black"
-        canvasProps={{ width: 150, height: 100, className: 'sigCanvas' }}
+        canvasProps={{ width: 270, height: 50, className: 'sigCanvas' }}
       />
       <br />
       <button className="submit-form" onClick={handleSubmit}>
