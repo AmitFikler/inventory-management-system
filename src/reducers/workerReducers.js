@@ -11,6 +11,8 @@ export const workerReducer = (state = initialState, action) => {
     case ENTRY_WORKER:
       const { fullName, workplace, date } = action.payload;
       return { fullName, workplace, date };
+    case 'ADD_SIGNATURE':
+      return { ...state, signature: action.payload };
     default:
       return { ...state };
   }
