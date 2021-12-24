@@ -11,7 +11,18 @@ export const inventoryReducer = (state = initialState, action) => {
     case 'REMOVE_ITEM':
       const arrayAfterFilter = state.filter((item, i) => i !== action.payload);
       return [...arrayAfterFilter];
+
+    case 'UPDATE_MISSING':
+      const itemEl = findItem(state, action.index);
+      itemEl.missing = action.missing;
+      return [...state];
+
     default:
       return [...state];
   }
+};
+
+const findItem = (state, itemIndex) => {
+  const item = state.find((product, index) => index === itemIndex);
+  return item;
 };

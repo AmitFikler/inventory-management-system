@@ -7,20 +7,24 @@ const InventoryList = () => {
   return (
     <div>
       <h1>{worker.fullName}</h1>
-      <table>
-        <tr>
-          <th>#</th>
-          <th>Item's name</th>
-          <th>Full quantity</th>
-          <th>Current quantity</th>
-          <th>Missing</th>
-        </tr>
-        <tbody>
-          {fullEquipmentList.map((item, i) => {
-            return [<TableRow item={item} i={i} key={i} />];
-          })}
-        </tbody>
-      </table>
+      <div className="table-div">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item's name</th>
+              <th>Full quantity</th>
+              <th>Current quantity</th>
+              <th>Missing</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fullEquipmentList.map((item, i) => {
+              return [<TableRow item={item} i={i} key={i} />];
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

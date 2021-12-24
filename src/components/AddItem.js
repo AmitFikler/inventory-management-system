@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 
 const AddItem = () => {
   const [itemName, setItemName] = useState('');
-  const [itemQuantity, setItemQuantity] = useState('');
+  const [itemQuantity, setItemQuantity] = useState(1);
+
   const dispatch = useDispatch();
+
   const addNewItem = () => {
     dispatch({
       type: 'ADD_ITEM',

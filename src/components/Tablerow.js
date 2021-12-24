@@ -1,15 +1,28 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const TableRow = ({ item, i }) => {
   const [currentQuantity, setCurrentQuantity] = useState(0);
+
   const dispatch = useDispatch();
 
   const removeItem = (index) => {
     dispatch({ type: 'REMOVE_ITEM', payload: index });
   };
+  useEffect(() => {
+    dispatch({
+      type: 'UPDATE_MISSING',
+      index: i,
+      missing: item.fullQuantity - currentQuantity,
+    });
+  }, [currentQuantity]);
+
+  const handleChange = (e) => {
+    setCurrentQuantity(e.target.value);
+  };
   return (
-    <tr>
+    <tr style={{ backgroundColor: i % 2 ? '#508991' : '#95C5DA' }}>
       <td>{i}</td>
       <td>{item.name}</td>
       <td>{item.fullQuantity}</td>
@@ -18,7 +31,7 @@ const TableRow = ({ item, i }) => {
           min={0}
           defaultValue={0}
           type="number"
-          onChange={(e) => setCurrentQuantity(e.target.value)}
+          onChange={(e) => handleChange(e)}
         />
       </td>
       <td>
@@ -33,7 +46,7 @@ const TableRow = ({ item, i }) => {
               removeItem(i);
             }}
           >
-            X
+            <i className="fas fa-trash-alt"></i>{' '}
           </button>
         </td>
       ) : (
