@@ -8,6 +8,9 @@ const AddItem = () => {
   const dispatch = useDispatch();
 
   const addNewItem = () => {
+    if (!itemName || !itemQuantity) {
+      return;
+    }
     dispatch({
       type: 'ADD_ITEM',
       payload: { name: itemName, fullQuantity: itemQuantity, owner: true },
@@ -18,25 +21,26 @@ const AddItem = () => {
     <div>
       <fieldset className="add-item-form">
         <legend>Add Item:</legend>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          placeholder="name"
-          name="name"
-          onChange={(e) => setItemName(e.target.value)}
-        ></input>
-        <br />
-        <br />
-        <label htmlFor="quantity">Quantity: </label>
-        <input
-          min={1}
-          defaultValue={1}
-          type="number"
-          placeholder="quantity"
-          name="quantity"
-          onChange={(e) => setItemQuantity(e.target.value)}
-        ></input>
-        <br />
+        <div className="form-el">
+          <label htmlFor="name">Name: </label>
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            onChange={(e) => setItemName(e.target.value)}
+          ></input>
+        </div>
+        <div className="form-el">
+          <label htmlFor="quantity">Quantity: </label>
+          <input
+            min={1}
+            defaultValue={1}
+            type="number"
+            placeholder="quantity"
+            name="quantity"
+            onChange={(e) => setItemQuantity(e.target.value)}
+          ></input>
+        </div>
         <br />
         <button onClick={addNewItem}>Add</button>
       </fieldset>

@@ -28,13 +28,15 @@ const InventoryPage = () => {
     <>
       <InventoryList />
       <AddItem />
-      <label htmlFor="Signature">Signature: </label>
-      <SignatureCanvas
-        name="signature"
-        ref={sigPad}
-        penColor="black"
-        canvasProps={{ width: 270, height: 50, className: 'sigCanvas' }}
-      />
+      <div style={{ marginTop: '1%' }}>
+        <div>Signature: </div>
+        <SignatureCanvas
+          name="signature"
+          ref={sigPad}
+          penColor="black"
+          canvasProps={{ width: 270, height: 70, className: 'sigCanvas' }}
+        />
+      </div>
       <br />
       <button className="submit-form" onClick={handleSubmit}>
         Submit

@@ -6,7 +6,8 @@ const InventoryList = () => {
   const fullEquipmentList = useSelector((state) => state.inventoryReducer);
   return (
     <div>
-      <h1>{worker.fullName}</h1>
+      <h1>Hello {worker.fullName}!</h1>
+      <h3>Please check the equipment before entering the shift.</h3>
       <div className="table-div">
         <table>
           <thead>
